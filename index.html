@@ -520,7 +520,7 @@ $('tPlay').onclick=function(){setMode('play')};
 $('schema').innerHTML=Object.keys(D).map(function(t){
  var rows=D[t].slice(0,3);return'<p><b>'+t+'</b> ('+D[t].length+' rows)</p>'+table(rows).replace(/<p[^>]*>.*<\/p>/,'')
 }).join('');
-renderLesson();hud();setMode('home');
+renderLesson();hud();
 /* PokeQuery RPG expansion: encounters, region gates, Gym Leader SQL battles and mastery rewards */
 var RPG_REGIONS=[
  {name:'Kanto',icon:'🌿',unlock:0,desc:'Learn the fundamentals in the region where every adventure begins.'},
@@ -583,6 +583,8 @@ function renderHome(){
 /* Reward mastery also attracts a Pokémon, but only the RPG's explicit encounter/battle grants captures. */
 var RPG_STYLE=document.createElement('style');RPG_STYLE.textContent=`.eyebrow{font-size:10px;letter-spacing:.16em;font-weight:900;color:#ffdc58;text-transform:uppercase}.region-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}.region-card{display:flex;align-items:center;gap:9px;padding:12px;border:1px solid #405765;background:linear-gradient(135deg,#203542,#172731);border-radius:15px;min-width:0}.region-locked{opacity:.5;filter:saturate(.45)}.region-icon{font-size:25px}.region-copy{flex:1;min-width:0}.region-copy b,.region-copy small{display:block}.region-copy small{font-size:11px;color:#a9bdc9;line-height:1.3;margin-top:3px}.region-status{font-size:9px;font-weight:900;color:#ffdf69;white-space:nowrap}.gym-row:disabled{opacity:.42;filter:saturate(.4)}.mastery-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mastery-tile{padding:12px;background:#11232d;border:1px solid #344b59;border-radius:13px}.mastery-tile span{float:right;color:#ffdc58}.mastery-tile b,.mastery-tile small{display:block}.mastery-tile small{color:#a9bdc9;font-size:11px;margin-top:4px}.dex-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:12px}.dex-card{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px;border:1px solid #3a5361;border-radius:12px;background:#12232d;text-align:center;min-width:0}.dex-card span{font-size:23px}.dex-card b{font-size:11px;overflow-wrap:anywhere}.dex-card small{font-size:9px;color:#a9bdc9}.dex-unknown{opacity:.5}.encounter-stage{display:flex;align-items:center;gap:14px;padding:16px;background:radial-gradient(ellipse at 30% 50%,#315f52,#12242c 75%);border:1px solid #42675e;border-radius:17px;margin:12px 0}.enc-ball,.capture-ball{width:62px;height:62px;display:grid;place-items:center;border-radius:50%;background:#f4f6f8;border:5px solid #e64b4b;box-shadow:inset 0 -20px #dfe7ed;font-size:29px;flex-shrink:0}.capture-start .capture-ball{animation:ballthrow .85s ease-in-out}.capture-success .capture-ball{animation:captured .5s ease-out;border-color:#f9d24b}.capture-success{background:radial-gradient(ellipse at 30% 50%,#3d7657,#12242c 75%)}@keyframes ballthrow{0%{transform:translateX(0) rotate(0)}45%{transform:translateX(85px) translateY(-25px) rotate(240deg)}100%{transform:translateX(0) rotate(720deg) scale(.8)}}@keyframes captured{0%{transform:scale(1)}50%{transform:scale(1.3);box-shadow:0 0 25px #ffe36b}100%{transform:scale(1)}}@media(max-width:420px){.region-list{grid-template-columns:1fr}.region-card{padding:10px}.dex-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.region-status{font-size:8px}}`;document.head.appendChild(RPG_STYLE);
 
+// Start the interface only after RPG_STATE and the RPG renderers are initialised.
+setMode('home');
 </script>
 </body>
 </html>
